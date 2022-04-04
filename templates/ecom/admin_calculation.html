@@ -1,0 +1,105 @@
+{% extends 'ecom/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+
+    .float{
+	position:fixed;
+	width:70px;
+	height:70px;
+	bottom:60px;
+	right:60px;
+	background-color:red;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style>
+</head>
+
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Есептеулер тізімі</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Жұмысшылар</th>
+          <th>Жыл </th>
+          <th>Қантар </th>
+          <th>Ақпан </th>
+          <th>Наурыз </th>
+          <th>Сәуір </th>
+          <th>Мамыр </th>
+          <th>Маусым </th>
+          <th>Шілде </th>
+          <th>Тамыз </th>
+          <th>Қыркүйек </th>
+          <th>Қазан </th>
+          <th>Қараша </th>
+          <th>Желтоқсан </th>
+          <th>Жаңарту</th>
+          <!--<th>Delete</th>-->
+        </tr>
+      </thead>
+      {% for p in calculation %}
+        {% if p %}
+          <tr>
+            <td>{{p.worker}}</td>
+            <td>{% if p.year %} {{ p.year}} {% endif %}</td>
+            <td>{% if p.january %}{{ p.january}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.february %}{{ p.february}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.march %}{{ p.march}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.april %}{{ p.april}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.may %}{{ p.may}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.june %}{{ p.june}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.july %}{{ p.july}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.august %}{{ p.august}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.september %}{{ p.september}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.october %}{{ p.october}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.november %}{{ p.november}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td>{% if p.december %}{{ p.december}} {% if p.currency %} {{ p.currency.symbol}} {% endif %}{% endif %} </td>
+            <td><a class="btn btn-primary btn-xs" href="{% url 'update-calculation' p.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <!--<td><a class="btn btn-danger btn-xs" href="{% url 'delete-worker' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>-->
+          </tr>
+        {%else%}
+          <br><br><br>
+          <h1>Есептеулер жоқ</h1>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<!-- add product floating button -->
+<!--<a href="/admin-add-worker" class="float">-->
+<!--<i class="fa fa-plus my-float"></i>-->
+<!--</a>-->
+
+
+{% endblock content %}

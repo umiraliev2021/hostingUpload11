@@ -1,0 +1,107 @@
+{% extends 'ecom/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+
+    .float{
+	position:fixed;
+	width:70px;
+	height:70px;
+	bottom:60px;
+	right:60px;
+	background-color:rgb(107, 225, 255);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style>
+</head>
+
+
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Жұмысшылар тізімі</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Толық аты</th>
+          <th>Цехте жұмысты бастау уақыты</th>
+          <th>Тәжірбие көлемі</th>
+          <th>Жасалынып жатқан жұмыстар</th>
+          <th>Жасалынып біткен жұмыстар</th>
+          <th>Жаңарту</th>
+          <th>Өшіру</th>
+        </tr>
+      </thead>
+      {% for p in workers %}
+
+  {% if p %}
+
+      <tr>
+        <td>{{p.fio}}</td>
+        <td> {{p.start_work}}</td>
+        <td>{{p.work_experience}}</td>
+        <td>
+          {% for w in workPerformed %}
+            {% for area in w.worker.all %}
+              {% if p.fio == area.fio and w.status == "In progress" %}
+                {{ w.name }}<br/>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </td>
+        <td>
+          {% for w in workPerformed %}
+            {% for area in w.worker.all %}
+              {% if p.fio == area.fio and w.status == "Completed" %}
+                {{ w.name }}<br/>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </td>
+        <td><a class="btn btn-primary btn-xs" href="{% url 'update-worker' p.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+        <td><a class="btn btn-danger btn-xs" href="{% url 'delete-worker' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+      </tr>
+      {%else%}
+      <br><br><br>
+      <h1>no workers</h1>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<!-- add product floating button -->
+<a href="/admin-add-worker" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+
+
+{% endblock content %}

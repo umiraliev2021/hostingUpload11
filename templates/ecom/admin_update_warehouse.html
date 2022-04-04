@@ -1,0 +1,94 @@
+{% extends 'ecom/admin_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #77b4ff, #77b4ff);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #7abaff;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<br><br><br><br><br><br>
+
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container register-form">
+          <div class="form">
+            <div class="note">
+              <p>Материалдарды реттеу</p>
+            </div>
+            <div class="form-content">
+              <div class="row">
+                <div class="col-md-6">
+                  <label >Сипаттамасы</label>
+                  <div class="form-group">
+                    {% render_field warehouseForm.description class="form-control" placeholder="Сипаттамасы" %}
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <label >Көлемі</label>
+                  <div class="form-group">
+                    {% render_field warehouseForm.amount class="form-control" placeholder="" %}
+                  </div>
+                  <label >Өлшеу бірліктері</label>
+                  <div class="form-group">
+                    {% render_field warehouseForm.uom class="form-control" placeholder="" %}
+                  </div>
+                  <label >Сатып алу бағасы</label>
+                  <div class="form-group">
+                    {% render_field warehouseForm.purchase_price class="form-control" placeholder="" %}
+                  </div>
+                  <label >Сату бағасы</label>
+                  <div class="form-group">
+                    {% render_field warehouseForm.selling_price class="form-control" placeholder="" %}
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btnSubmit" style="margin-left:80%">Жаңарту</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+{% endblock content %}

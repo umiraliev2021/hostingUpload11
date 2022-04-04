@@ -1,0 +1,164 @@
+{% extends 'ecom/admin_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #81baff, #81baff);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #8ec5ff;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<br><br><br><br><br><br>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Есептеулерді реттеу</p>
+      </div>
+      <div class="form-content">
+        <div class="row" style="display: none">
+          <div class="col-md-12">
+            <label >Жұмысшы</label>
+            <div class="form-group">
+              {% render_field calculationForm.worker class="form-control" placeholder="" %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label >Қантар</label>
+            <div class="form-group">
+              {% render_field calculationForm.january class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Ақпан</label>
+            <div class="form-group">
+              {% render_field calculationForm.february class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Наурыз</label>
+            <div class="form-group">
+              {% render_field calculationForm.march class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Сәуір</label>
+            <div class="form-group">
+              {% render_field calculationForm.april class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Мамыр</label>
+            <div class="form-group">
+              {% render_field calculationForm.may class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Маусым</label>
+            <div class="form-group">
+              {% render_field calculationForm.june class="form-control" placeholder="" %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label >Шілде</label>
+            <div class="form-group">
+              {% render_field calculationForm.july class="form-control" placeholder="" %}
+            </div>
+
+          </div>
+          <div class="col-md-2">
+            <label >Тамыз</label>
+            <div class="form-group">
+              {% render_field calculationForm.august class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Қыркүйек</label>
+            <div class="form-group">
+              {% render_field calculationForm.september class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Қазан</label>
+            <div class="form-group">
+              {% render_field calculationForm.october class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Қараша</label>
+            <div class="form-group">
+              {% render_field calculationForm.november class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label >Желтоқсан</label>
+            <div class="form-group">
+              {% render_field calculationForm.december class="form-control" placeholder="" %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label >Ақша бірлігі</label>
+            <div class="form-group">
+              {% render_field calculationForm.currency class="form-control" placeholder="" %}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label >Жыл</label>
+            <div class="form-group">
+              {% render_field calculationForm.year class="form-control" placeholder="" %}
+            </div>
+          </div>
+        <button type="submit" class="btnSubmit" style="margin-left:80%">Жаңарту</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+{% endblock content %}
